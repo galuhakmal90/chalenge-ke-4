@@ -1,150 +1,57 @@
-class game {
+class Game {
   constructor() {
-    this.controlBatuPemain = document.querySelector(
-      "#game-control .gambar-batu"
-    );
+    this.controlRock = document.querySelector("#rock");
+    this.controlScissor = document.querySelector("#scissor");
+    this.controlPaper = document.querySelector("#paper");
 
-    this.controlKertasPemain = document.querySelector(
-      "#game-control .gambar-kertas"
-    );
+    this.playerChoose = document.querySelector("#player-choose");
+    this.botChoose = document.querySelector("#bot-choose");
+    this.controlResult = document.querySelector("#result");
 
-    this.controlGuntingPemain = document.querySelector(
-      "#game-control .gambar-gunting"
-    );
-
-    this.controlBatuBot = document.querySelector(
-      "#game-control .gambar-batu-bot"
-    );
-
-    this.controlKertastBot = document.querySelector(
-      "#game-control .gambar-kertas-bot"
-    );
-
-    this.controlGuntingBot = document.querySelector(
-      "#game-control .gambar-gunting-bot"
-    );
-
-    this.controlBatuMenang = document.querySelector(
-      "#game-control .gambar-batu-com-re"
-    );
-
-    this.controlKertasuMenang = document.querySelector(
-      "#game-control .gambar-kertas-com-re"
-    );
-
-    this.controlGuntingMenang = document.querySelector(
-      "#game-control .gambar-gunting-com-re"
-    );
-
-    this.controlVs = document.querySelector("#game-control .match")
-
-    this.controlBatuPemain.addEventListener("click", () => {
-      this.controlVs.style.display = "none";
-      this.pilihBatu();
-    });
-
-    this.controlKertasPemain.addEventListener("click", () => {
-      this.controlVs.style.display = "none";
-      this.pilihKertas();
-    });
-
-    this.controlGuntingPemain.addEventListener("click", () => {
-      this.controlVs.style.display = "none";
-      this.pilihGunting();
-    });
-
+    this.controlRock.addEventListener("click", () => this.gameLogic("rock"))
+    this.controlScissor.addEventListener("click", () => this.gameLogic("scissor"))
+    this.controlPaper.addEventListener("click", () => this.gameLogic("paper"))
   }
 
-  pilihBatu() {
-    const pilih = ["kertas", "batu", "gunting"];
-    const bot = Math.floor(Math.random() * 3);
-    const hasil = pilih[bot];
-    const batu = "batu";
-    const tampilHasil = document.querySelector(".style-win");
+  winner(player, result) {
+    if (player === 'rock' && result === 'scissor') return 'win'
+    if (player === 'paper' && result === 'rock') return 'win'
+    if (player === 'scissor' && result === 'paper') return 'win'
+    if (player === 'rock' && result === 'paper') return 'lose'
+    if (player === 'paper' && result === 'scissor') return 'lose'
+    if (player === 'scissor' && result === 'rock') return 'lose'
+    return 'draw'
+  }
 
-    if (hasil === "gunting" && batu ==="batu") {
-      tampilHasil.textContent = "kamu menang";
-      this.controlKertasuMenang.style.background = "none";
-      this.controlBatuMenang.style.background = "none";
-      this.controlGuntingMenang.style.background = null;
-    } else if(hasil === "batu"&& batu ==="batu") {
-      tampilHasil.textContent = "imbang";
-      this.controlKertasuMenang.style.background = "none";
-      this.controlGuntingMenang.style.background = "none";
-      this.controlBatuMenang.style.background = null;
-    } else if(hasil && batu === "batu") {
-      tampilHasil.textContent = "kamu kalah";
-      this.controlBatuuMenang.style.background = "none";
-      this.controlGuntingMenang.style.background = "none";
-      this.controlKertasMenang.style.background = null;
+  gameLogic (weapon) {
+    const bot = ["rock", "scissor", "paper"];
+    const random = Math.floor(Math.random() * 3);
+    const botChoice = bot[random];
+    const player = weapon;
+
+    const result = this.winner(player, botChoice);
+
+    this.playerChoose.innerHTML = player;
+    this.botChoose.innerHTML = botChoice;
+    this.controlResult.classList.remove("win", "lose", "draw");
+
+    if (result === 'win') {
+      this.controlResult.innerHTML = `You win!`
+      this.controlResult.classList.add('win')
     }
-  }
 
-  pilihKertas() {
-    const pilih = ["kertas", "batu", "gunting"];
-    const bot = Math.floor(Math.random() * 3);
-    const hasil = pilih[bot];
-    const batu = "kertas";
-    const tampilHasil = document.querySelector(".style-win");
-
-    if (hasil === "gunting" && batu ==="kertas") {
-      tampilHasil.textContent = "kamu kalah";
-      this.controlKertasuMenang.style.background = "none";
-      this.controlBatuMenang.style.background = "none";
-      this.controlGuntingMenang.style.background = null;
-    } else if(hasil === "kertas"&& batu ==="kertas") {
-      tampilHasil.textContent = "imbang";
-      this.controlKertasuMenang.style.background = null;
-      this.controlGuntingMenang.style.background = "none";
-      this.controlBatuMenang.style.background = "none";
-    } else if(hasil && kertas === "kertas") {
-      tampilHasil.textContent = "kamu menang";
-      this.controlBatuuMenang.style.background = "none";
-      this.controlGuntingMenang.style.background = "none";
-      this.controlKertasMenang.style.background = null;
+    if (result === 'lose') {
+      this.controlResult.innerHTML = `You lose!`
+      console.log(this.controlResult)
+      this.controlResult.classList.add('lose')
     }
-  }
 
-  pilihGunting() {
-    const pilih = ["kertas", "batu", "gunting"];
-    const bot = Math.floor(Math.random() * 3);
-    const hasil = pilih[bot];
-    const batu = "gunting";
-    const tampilHasil = document.querySelector(".style-win");
-
-    if (hasil === "gunting" && batu ==="batu") {
-      tampilHasil.textContent = "kamu kalah";
-      this.controlKertasuMenang.style.background = "none";
-      this.controlGuntingMenang.style.background = "none";
-      this.controlBatuMenang.style.background = null;
-    } else if(hasil === "gunting"&& batu ==="gunting") {
-      tampilHasil.textContent = "imbang";
-      this.controlKertasuMenang.style.background = "none";
-      this.controlBatuMenang.style.background = "none";
-      this.controlGuntingMenang.style.background = null;
-    } else if(hasil && batu === "batu") {
-      tampilHasil.textContent = "kamu menang";
-      this.controlBatuuMenang.style.background = "none";
-      this.controlGuntingMenang.style.background = "none";
-      this.controlKertasMenang.style.background = null;
+    if (result === 'draw') {
+      this.controlResult.innerHTML = `Draw!`
+      console.log(this.controlResult)
+      this.controlResult.classList.add('draw')
     }
   }
 }
 
-this.controlBatuMenang = document.querySelector(
-  "#game-control .gambar-batu-com-re"
-);
-this.controlKertasMenang = document.querySelector(
-  "#game-control .gambar-kertas-com-re"
-);
-this.controlGuntingMenang = document.querySelector(
-  "#game-control .gambar-gunting-com-re"
-);
-
-overlayButton.addEventListener("click", () => {
-  overlay.style.display = "none";
-  this.controlBatuMenang.style.background = "none";
-  this.controlKertasMenang.style.background = "none";
-  this.controlGuntingMenang.style.background = "none";
-  new Game();
-});
+new Game()
