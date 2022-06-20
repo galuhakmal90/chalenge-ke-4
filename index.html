@@ -1,79 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
   <link rel="stylesheet" href="style.css" />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap"
-      rel="stylesheet"
-    />
-
+  <title>Gunting Batu Kertas</title>
 </head>
+
 <body>
-  
-  <div class="logo">
-    <img src="logo 3.png" alt=""/>
-  </div>
+  <nav>
+    <img src="./img/logo.png" alt="logo">
+    <h1>Game Gunting Batu Kertas</h1>
+  </nav>
 
-  <div class="judul">
-    <h4>gunting batu kertas</h4>
-  </div>
-  
-  <div class="judul-player">
-      <a>PLAYER 1</a>
-    </div>
-
-  <div id="game-control">
-    <div id="player1">
-      <div class="gambar-batu">
-        <img src="batu 6.png" alt=""/>
-      </div>
-
-      <div class="gambar-kertas">
-        <img src="kertas 6.png" alt=""/>
-      </div>
-
-      <div class="gambar-gunting">
-        <img src="gunting 5.png" alt=""/>
+  <main class="game-wrapper">
+    <div class="player">
+      <h2>PLAYER</h2>
+      <div class="weapon-choices">
+        <img src="./img/batu.png" alt="batu" id="rock">
+        <img src="./img/kertas.png" alt="kertas" id="paper">
+        <img src="./img/gunting.png" alt="gunting" id="scissor">
       </div>
     </div>
-    <div id="rectangle">
-      <a class="style-win">player 1</a>
+    <div class="result">
+      <h4>You choose : <span id="player-choose"></span></h4>
+      <h4>You choose : <span id="bot-choose"></span></h4>
+      <h2 id="result">
+        Choose One to Play
+      </h2>
     </div>
-    <h3 class="match">vs</h3>
-
-    <div class="judul-com"><a>com</a></div>
-
-    <div class="gambar-batu-bot">
-      <div class="gambar-batu-bot-re">
-        <img src="batu 6.png" alt="" />
+    <div class="computer">
+      <h2>COMPUTER</h2>
+      <div class="weapon-choices">
+        <img src="./img/batu.png" alt="batu">
+        <img src="./img/kertas.png" alt="kertas">
+        <img src="./img/gunting.png" alt="gunting">
       </div>
     </div>
+  </main>
 
-    <div class="gambar-kertas-bot">
-      <div class="gambar-kertas-bot-re">
-        <img src="kertas 6.png" alt="" />
-      </div>
-    </div>
-
-    <div class="gambar-gunting-bot">
-      <div class="gambar-gunting-bot-re">
-        <img src="gunting 5.png" alt="" />
-      </div>
-    </div>
-
-    <div class="refresh">
-      <img src="refresh 2.png" alt="">
-    </div>
-  </div>
-
-  <script src="main.js"></script>
-
+  <script src="index.js"></script>
 </body>
+
 </html>
